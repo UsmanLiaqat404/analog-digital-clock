@@ -1,0 +1,198 @@
+:root {
+  --clr-dark-background: #2f363e;
+  --clr-hr: #ff2972;
+  --clr-sc: #04fc43;
+  --clr-mn: #fee800;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--clr-dark-background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  position: relative;
+  background-color: var(--clr-dark-background);
+  border-radius: 20px;
+  border-top-left-radius: 225px;
+  border-top-right-radius: 225px;
+  box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.75),
+    10px 10px 70px rgba(0, 0, 0, 0.25), inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.clock {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  background-color: var(--clr-dark-background);
+  border-radius: 50%;
+  box-shadow: 10px 50px 70px rgba(0, 0, 0, 0.25),
+    inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.clock::before {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--clr-dark-background);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  z-index: 999;
+}
+.clock span {
+  position: absolute;
+  inset: 20px;
+  color: #ffffff;
+  text-align: center;
+  transform: rotate(calc(30deg * var(--i)));
+}
+.clock span b {
+  font-size: 2em;
+  opacity: 0.25;
+  font-weight: 600;
+  display: inline-block;
+  transform: rotate(calc(-30deg * var(--i)));
+}
+
+#sc {
+  --clr: var(--clr-sc);
+  width: 300px;
+  height: 300px;
+  z-index: 10;
+}
+#sc i {
+  width: 2px;
+}
+
+#mn {
+  --clr: var(--clr-mn);
+  width: 240px;
+  height: 240px;
+  z-index: 9;
+}
+#mn i {
+  width: 4px;
+}
+
+#hr {
+  --clr: var(--clr-hr);
+  width: 180px;
+  height: 180px;
+  z-index: 8;
+}
+#hr i {
+  width: 6px;
+}
+
+.circle {
+  /*** ANALOG Orbit Tracks ***/
+  position: absolute;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  /*** ANALOG Balls\Planes ***/
+  /*** ANALOG HOUR HANDS ***/
+}
+.circle::before {
+  content: "";
+  position: absolute;
+  top: -8.5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--clr);
+  box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
+}
+.circle i {
+  position: absolute;
+  height: 50%;
+  background-color: var(--clr);
+  opacity: 0.65;
+  transform-origin: bottom;
+  transform: scaleY(0.54);
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*** TEXT DISPLAY ***/
+#time {
+  margin-bottom: 40px;
+  display: flex;
+  padding: 10px 20px;
+  font-size: 2em;
+  font-weight: 600;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
+    inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+    inset -5px -5px 20px rgba(0, 0, 0, 0.75);
+}
+#time div {
+  position: relative;
+  width: 3ch;
+  text-align: center;
+  font-weight: 500;
+  color: var(--clr);
+}
+#time div:nth-child(1)::after,
+#time div:nth-child(2)::after {
+  content: ":";
+  position: absolute;
+  right: -0.1em;
+}
+#time div:nth-child(1) {
+  color: var(--clr-hr);
+}
+#time div:nth-child(2) {
+  color: var(--clr-mn);
+}
+#time div:nth-child(2)::after {
+  animation: fade 1000ms infinite;
+}
+#time div:nth-child(3) {
+  color: var(--clr-sc);
+}
+#time div:last-child {
+  font-size: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+@keyframes fade {
+  50% {
+    opacity: 0;
+  }
+}
